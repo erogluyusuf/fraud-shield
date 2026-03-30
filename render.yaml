@@ -1,0 +1,34 @@
+services:
+  # --- Frontend ---
+  - type: web
+    name: fraud-frontend
+    runtime: node
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: "./frontend/dist"
+    envVars:
+      - key: VITE_API_URL
+        value: "https://fraud-api.onrender.com"
+
+  # --- API ---
+  - type: web
+    name: fraud-api
+    runtime: python
+    buildCommand: "cd backend/api && pip install -r requirements.txt"
+    startCommand: "cd backend/api && uvicorn main:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: RABBITMQ_HOST
+        fromService:
+          type: web
+          name: fraud-rabbitmq
+          property: host
+
+  # --- Worker ---
+  - type: worker
+    name: fraud-worker
+    runtime: python
+    buildCommand: "cd backend/worker && pip install -r requirements.txt"
+    startCommand: "cd backend/worker && python main.py"
+
+# Not: Ücretsiz katmanda RabbitMQ ve Redis gibi 
+# yönetilen servisler Render Blueprint ile ek maliyet çıkarabilir.
+# Bu dosya mimariyi göstermek amacıyla hazırlanmıştır.
