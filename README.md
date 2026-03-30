@@ -1,5 +1,10 @@
 #  Fraud Shield: Real-Time Transaction Monitoring & MCP Platform
 
+<p align="center">
+  <img src="https://badges-jet.vercel.app/api/card?username=erogluyusuf&repo=fraud-shield&theme=dark&bg=0d1117&titleColor=58a6ff&textColor=8b949e&animate=true&qr=true&customBadges=Architecture:Microservices:ff4500:docker,Backend:FastAPI:05998b:fastapi,Queue:RabbitMQ:ff6600:rabbitmq,Cache:Redis:d82c20:redis" width="550">
+</p>
+
+
 Bu proje, e-ticaret platformlarında gerçekleşen ödeme ve işlem verilerini toplayan, asenkron olarak analiz eden, şüpheli işlemleri (fraud) gerçek zamanlı tespit eden ve yapay zeka ajanları için Model Context Protocol (MCP) üzerinden veri sunan uçtan uca bir platformdur.
 
 ##  Proje Amacı ve Kapsamı
