@@ -31,7 +31,7 @@ Tüm sistem `docker-compose` ile tek komutla ayağa kaldırılabilir.
     ```
 2.  Tüm konteynerlerin ayağa kalktığından emin olun: `docker ps`
 
-## 📖 Kullanım Rehberi ve Endpointler
+##  Kullanım Rehberi ve Endpointler
 - **Frontend Dashboard:** [http://localhost:5173](http://localhost:5173)
 - **API Swagger Dokümantasyonu:** [http://localhost:8000/docs](http://localhost:8000/docs)
 - **RabbitMQ Yönetim Paneli:** [http://localhost:15672](http://localhost:15672) (guest/guest)
