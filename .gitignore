@@ -4,3 +4,7 @@ node_modules/
 .DS_Store
 *.pyc
 frontend/dist/
+backend/api/venv/
+backend/worker/venv/
+backend/mcp/venv/
+.env
