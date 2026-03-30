@@ -1,34 +1,31 @@
 services:
-  # --- Frontend ---
-  - type: web
-    name: fraud-frontend
-    runtime: node
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: "./frontend/dist"
-    envVars:
-      - key: VITE_API_URL
-        value: "https://fraud-api.onrender.com"
-
-  # --- API ---
+  # --- API Servisi ---
   - type: web
     name: fraud-api
-    runtime: python
-    buildCommand: "cd backend/api && pip install -r requirements.txt"
-    startCommand: "cd backend/api && uvicorn main:app --host 0.0.0.0 --port 10000"
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: ./backend/api/Dockerfile
+    plan: free
     envVars:
       - key: RABBITMQ_HOST
-        fromService:
-          type: web
-          name: fraud-rabbitmq
-          property: host
+        value: rabbitmq # Not: Render iç ağında servis adı kullanılır
 
-  # --- Worker ---
+  # --- Worker Servisi ---
   - type: worker
     name: fraud-worker
-    runtime: python
-    buildCommand: "cd backend/worker && pip install -r requirements.txt"
-    startCommand: "cd backend/worker && python main.py"
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: ./backend/worker/Dockerfile
+    plan: free
 
-# Not: Ücretsiz katmanda RabbitMQ ve Redis gibi 
-# yönetilen servisler Render Blueprint ile ek maliyet çıkarabilir.
-# Bu dosya mimariyi göstermek amacıyla hazırlanmıştır.
+  # --- Frontend (Statik Site olarak) ---
+  - type: web
+    name: fraud-frontend
+    runtime: static
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: "./frontend/dist"
+    plan: free
+
+# Not: Render'ın ücretsiz katmanı RabbitMQ ve Redis'i 
+# "Yönetilen Servis" olarak Docker Compose gibi direkt ayağa kaldırmaz. 
+# Bu servisleri Render'ın kendi Marketplace'inden manuel eklemek gerekir.
