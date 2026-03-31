@@ -68,3 +68,4 @@ Bir işlem, aşağıdaki kriterlerden **en az ikisi** ihlal edildiğinde "Şüph
 - **Bağlantı Hataları:** Konteynerlerin `healthy` durumda olduğunu `docker ps` ile kontrol edin.
 - **Port Çakışması:** Eğer 5433, 6379 veya 5672 portları doluysa `docker-compose.yml` üzerinden port eşleşmelerini güncelleyin.
 - **Frontend Boş Sayfa:** Browser önbelleğini temizleyin ve React derlemesinin tamamlanması için 10-15 saniye bekleyin.
+ 
